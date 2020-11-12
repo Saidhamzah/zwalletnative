@@ -10,7 +10,11 @@ import ArrowUpIcon from '../../assets/icon/arrow-up.svg'
 import PlusIcon from '../../assets/icon/plus.svg'
 import BellIcon from '../../assets/icon/bell.svg'
 import ProfileNetflix from '../../assets/icon/netflix.svg'
-export default function Dashboard({navigation}) {
+import CustomDrawer from '../sidebar/customDrawer';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
+const Welcome=(navigation)=> {
   return (
     <SafeAreaView style={style.container}>
       <ScrollView>
@@ -168,3 +172,29 @@ export default function Dashboard({navigation}) {
     </SafeAreaView>
   );
 }
+const Profile = () => {
+  return (
+    <View>
+      <Text>Profile</Text>
+    </View>
+  );
+};
+
+const Home = (props) => {
+  return (
+    <Drawer.Navigator
+      drawerContentOptions={{
+        activeBackgroundColor: '#11624299',
+        activeTintColor: '#fff',
+      }}
+      drawerContent={(props) => <CustomDrawer {...props} />}
+      drawerType="back"
+      initialRouteName="Welcome"
+      overlayColor="#ffffff22">
+      <Drawer.Screen name="Welcome" component={Welcome} />
+      <Drawer.Screen name="Profile" component={Profile} />
+    </Drawer.Navigator>
+  );
+};
+
+export default Home;

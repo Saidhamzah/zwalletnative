@@ -40,24 +40,24 @@ const AuthRegisterError = (error)=> {
 
 
 
-export const AuthRegister = (fields) => {
+export const AuthLogin = (fields) => {
     return (dispatch) =>{
-        dispatch(AuthRegisterRequest())
+        dispatch(AuthLoginRequest())
         return Axios({
             method: 'POST',
             data: fields,
-            url: 'https://zwallet-sleepless-backend.herokuapp.com/zwallet/api/v1/auth/register            '
+            url: 'https://zwallet-sleepless-backend.herokuapp.com/zwallet/api/v1/auth/login            '
         }).then((res)=> {
             const data = res.data
             console.log(data, 'dataas')
             ToastAndroid.show(
-                `Success register account, Please Login`,
+                `Success Login, Welcome`,
                 ToastAndroid.SHORT,
             );
-            dispatch(AuthRegisterSuccess(data))
+            dispatch(AuthLoginSuccess(data))
         }).catch((err)=> {
             const message = err.message
-            dispatch(AuthRegisterError(message))
+            dispatch(AuthLoginError(message))
         })
     }
 }

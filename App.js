@@ -5,15 +5,15 @@
  * @format
  * @flow strict-local
  */
-import 'react-native-gesture-handler'
+import 'react-native-gesture-handler';
 import React from 'react';
-import {
-  Text,
-  View, StatusBar
-} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native'
-import AuthRouter from './src/navigator'
-import {DefaultTheme, Provider as PaperProvider  } from 'react-native-paper'
+import {Text, View, StatusBar} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import MainNavigator from './src/navigator';
+import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
+import configureStore from './src/redux/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import {Provider} from 'react-redux';
 
 const theme = {
   ...DefaultTheme,
@@ -21,20 +21,22 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: '#fafcff',
-    accent : '#ffff'
+    accent: '#ffff',
   },
 };
 
 const App = () => {
+  const {store, persistor} = configureStore();
   return (
-    <>
-         <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />
-    <PaperProvider theme={theme}>
-        <AuthRouter />
-    </PaperProvider>
-    </>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />
+        <PaperProvider theme={theme}>
+          <MainNavigator />
+        </PaperProvider>
+      </PersistGate>
+    </Provider>
   );
 };
-
 
 export default App;
