@@ -13,13 +13,13 @@ function CustomDrawer(props) {
   const dispatch = useDispatch();
 
   const onLogout = () => {
-    Alert.alert('Keluar Akun', 'Apakah Kamu Yakin?', [
+    Alert.alert('Log Out Account', 'Are You Sure?', [
       {
-        text: 'Tidak',
+        text: 'Cancel',
         style: 'cancel'
       },
       {
-        text: 'Keluar',
+        text: 'Logout',
         onPress: () => dispatch(AuthLogout()),
       },
     ], { cancelable: true });
@@ -37,7 +37,7 @@ function CustomDrawer(props) {
       </View>
       <DrawerItemList {...props} />
       <Divider />
-      <List.Item title="Keluar" onPress={() => onLogout()} />
+      <List.Item title="Logout" onPress={() => onLogout()} />
     </DrawerContentScrollView>
   );
 }

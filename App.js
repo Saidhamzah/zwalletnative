@@ -20,7 +20,7 @@ const theme = {
   roundness: 2,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#fafcff',
+    primary: '#FAFCFF',
     accent: '#ffff',
   },
 };
@@ -30,7 +30,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />
+        
         <PaperProvider theme={theme}>
           <MainNavigator />
         </PaperProvider>

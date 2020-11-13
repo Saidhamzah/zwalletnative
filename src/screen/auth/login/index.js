@@ -10,7 +10,7 @@ import {
   Alert,
   ScrollView,
   ToastAndroid,
-  TouchableNativeFeedback,
+  TouchableNativeFeedback,StatusBar
 } from 'react-native';
 import {Button, Text} from 'react-native-paper';
 import styles from '../../style/index';
@@ -44,6 +44,8 @@ const Login = (props) => {
   };
 
   return (
+    <>
+    <StatusBar barStyle="dark-content" backgroundColor="#FAFCFF" />
     <Fragment>
       <ScrollView>
         <View style={styles.positionCenter}>
@@ -135,6 +137,7 @@ const Login = (props) => {
         </View>
       </ScrollView>
     </Fragment>
+  </>
   );
 };
 
