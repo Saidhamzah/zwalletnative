@@ -23,19 +23,14 @@ const HomeStack = () => {
   const dispatch = useDispatch();
   const Auth = useSelector((s) => s.Auth);
   const {isLogin} = useSelector((s) => s.Auth);
-  const {token} = Auth.data.token;
-  const authorization = {Authorization: token};
-  useEffect(() => {
-    if (token) {
-      dispatch(Users(authorization));
-    }
-  }, [token]);
+
+  
   const [initialRoute, setInitialRoute] = React.useState('Home');
   const [loading, setLoading] = React.useState(true);
-  console.log('ini token', token);
+  console.log('ini token', isLogin);
   return (
     <>
-      {token && isLogin ? (
+      {isLogin ? (
         <Stack.Navigator>
           <Stack.Screen
             name="Dashboard"

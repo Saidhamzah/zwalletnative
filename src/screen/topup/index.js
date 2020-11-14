@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import style from '../style/index';
 import {View, Text, TextInput} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
 import ArrowLeft from '../../assets/icon/arrow-left.svg';
 import PlusBlue from '../../assets/icon/plusBlue.svg';
+import {useDispatch, useSelector} from 'react-redux';
+import {getTopup} from '../../redux/actions/Topup';
+import { FlatList } from 'react-native-gesture-handler'
+
 export default function Topup({navigation}) {
+  const dispatch = useDispatch();
+  const User = useSelector((s) => s.User);
+  const {data} = useSelector((s) => s.Topup);
+  React.useEffect(() => {
+    dispatch(getTopup());
+  },[]);
+  console.log(data.data, 'aaaaaaaaaaaaapaaaa');
+
   return (
     <SafeAreaView style={style.container}>
       <ScrollView>
@@ -64,7 +76,9 @@ export default function Topup({navigation}) {
             How to Top-Up
           </Text>
         </View>
-        <View style={style.contentTopup}>
+        {data.data.map((item, index)=>{
+          return(
+            <View style={style.contentTopup} key={index}>
           <View style={{flex: 5, flexDirection: 'row'}}>
             <View>
               <Text
@@ -72,7 +86,7 @@ export default function Topup({navigation}) {
                   style.font50p,
                   {fontSize: 20, color: '#6379F4', fontWeight: 'bold'},
                 ]}>
-                1
+                {item.stepNumber}
               </Text>
             </View>
             <View
@@ -82,173 +96,14 @@ export default function Topup({navigation}) {
                 justifyContent: 'center',
               }}>
               <Text style={{fontSize: 17, color: 'grey', lineHeight: 28}}>
-                Go to the nearest ATM or you can use E-Banking.
+                {item.instruction}
               </Text>
             </View>
           </View>
         </View>
-        <View style={style.contentTopup}>
-          <View style={{flex: 5, flexDirection: 'row'}}>
-            <View>
-              <Text
-                style={[
-                  style.font50p,
-                  {fontSize: 20, color: '#6379F4', fontWeight: 'bold'},
-                ]}>
-                2
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'column',
-                marginLeft: 10,
-                justifyContent: 'center',
-              }}>
-              <Text style={{fontSize: 17, color: 'grey', lineHeight: 28}}>
-                Type your security number on the ATM or E-Banking.
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={style.contentTopup}>
-          <View style={{flex: 5, flexDirection: 'row'}}>
-            <View>
-              <Text
-                style={[
-                  style.font50p,
-                  {fontSize: 20, color: '#6379F4', fontWeight: 'bold'},
-                ]}>
-                3
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'column',
-                marginLeft: 10,
-                justifyContent: 'center',
-              }}>
-              <Text style={{fontSize: 17, color: 'grey', lineHeight: 28}}>
-                Select “Transfer” in the menu.
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={style.contentTopup}>
-          <View style={{flex: 5, flexDirection: 'row'}}>
-            <View>
-              <Text
-                style={[
-                  style.font50p,
-                  {fontSize: 20, color: '#6379F4', fontWeight: 'bold'},
-                ]}>
-                4
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'column',
-                marginLeft: 10,
-                justifyContent: 'center',
-              }}>
-              <Text style={{fontSize: 17, color: 'grey', lineHeight: 28}}>
-                Type the virtual account number that we provide you at the top.
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={style.contentTopup}>
-          <View style={{flex: 5, flexDirection: 'row'}}>
-            <View>
-              <Text
-                style={[
-                  style.font50p,
-                  {fontSize: 20, color: '#6379F4', fontWeight: 'bold'},
-                ]}>
-                5
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'column',
-                marginLeft: 10,
-                justifyContent: 'center',
-              }}>
-              <Text style={{fontSize: 17, color: 'grey', lineHeight: 28}}>
-                Type the amount of the money you want to top up.
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={style.contentTopup}>
-          <View style={{flex: 5, flexDirection: 'row'}}>
-            <View>
-              <Text
-                style={[
-                  style.font50p,
-                  {fontSize: 20, color: '#6379F4', fontWeight: 'bold'},
-                ]}>
-                6
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'column',
-                marginLeft: 10,
-                justifyContent: 'center',
-              }}>
-              <Text style={{fontSize: 17, color: 'grey', lineHeight: 28}}>
-                Read the summary details.
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={style.contentTopup}>
-          <View style={{flex: 5, flexDirection: 'row'}}>
-            <View>
-              <Text
-                style={[
-                  style.font50p,
-                  {fontSize: 20, color: '#6379F4', fontWeight: 'bold'},
-                ]}>
-                7
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'column',
-                marginLeft: 10,
-                justifyContent: 'center',
-              }}>
-              <Text style={{fontSize: 17, color: 'grey', lineHeight: 28}}>
-                Press transfer / top up.
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={style.contentTopup}>
-          <View style={{flex: 5, flexDirection: 'row'}}>
-            <View>
-              <Text
-                style={[
-                  style.font50p,
-                  {fontSize: 20, color: '#6379F4', fontWeight: 'bold'},
-                ]}>
-                8
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'column',
-                marginLeft: 10,
-                justifyContent: 'center',
-              }}>
-              <Text style={{fontSize: 17, color: 'grey', lineHeight: 28}}>
-                You can see your money in Zwallet within 3 hours.
-              </Text>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
+        )
+        })}
+        </ScrollView>
     </SafeAreaView>
-  );
+    );
 }
