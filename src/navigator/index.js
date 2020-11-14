@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
@@ -15,31 +15,43 @@ import {
   Topup,
 } from '../screen';
 import {isLogin} from '../utils';
-import {useSelector} from 'react-redux';
-
+import {useSelector, useDispatch} from 'react-redux';
+import {Users} from '../redux/actions/Users';
 const Stack = createStackNavigator();
 
 const HomeStack = () => {
+  const dispatch = useDispatch();
   const Auth = useSelector((s) => s.Auth);
+  const {isLogin} = useSelector((s) => s.Auth);
+  const {token} = Auth.data.token;
+  const authorization = {Authorization: token};
+  useEffect(() => {
+    if (token) {
+      dispatch(Users(authorization));
+    }
+  }, [token]);
   const [initialRoute, setInitialRoute] = React.useState('Home');
   const [loading, setLoading] = React.useState(true);
-  console.log(Auth.data);
+  console.log('ini token', token);
   return (
-    <Stack.Navigator>
-      {Auth.data.token ? (
-        <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
-          options={{headerShown: false}}
-        />
+    <>
+      {token && isLogin ? (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Dashboard"
+            component={Dashboard}
+            options={{headerShown: false}}
+          />
+        </Stack.Navigator>
       ) : (
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{headerShown: false}}
-        />
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{headerShown: false}}
+          />
+        </Stack.Navigator>
       )}
-
       <Stack.Screen
         name="RegisterForm"
         component={RegisterForm}
@@ -86,7 +98,7 @@ const HomeStack = () => {
         component={Topup}
         options={{headerShown: false}}
       />
-    </Stack.Navigator>
+    </>
   );
 };
 
