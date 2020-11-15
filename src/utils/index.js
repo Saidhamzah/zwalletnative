@@ -17,3 +17,5 @@
 // 	}
 // 	return false
 // }
+
+export const imageURI = 'https://zwallet-sleepless-backend.herokuapp.com/images/'

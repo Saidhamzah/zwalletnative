@@ -16,20 +16,19 @@ export default function Topup({navigation}) {
   React.useEffect(() => {
     dispatch(getTopup());
   },[]);
-  console.log(data.data, 'aaaaaaaaaaaaapaaaa');
+  // console.log(data.data, 'aaaaaaaaaaaaapaaaa');
 
   return (
     <SafeAreaView style={style.container}>
       <ScrollView>
         <View style={style.navbar}>
-          <View style={{flex: 2, marginLeft: 15}}>
+          <View style={{flexDirection: 'row', marginBottom: 30, alignSelf: 'flex-start'}}>
             <ArrowLeft
-              width="52"
-              height="52"
+              width={28} height={28}
               onPress={() => navigation.navigate('Dashboard')}
             />
           </View>
-          <Text style={style.name}>Find Receiver</Text>
+          <Text style={{color: style.white, fontWeight: 'bold', fontSize: 20, marginLeft: 20}}>Top up</Text>
           <View style={{flex: 10}}></View>
         </View>
         <View style={style.contentHistory}>

@@ -24,7 +24,6 @@ const HomeStack = () => {
   const Auth = useSelector((s) => s.Auth);
   const {isLogin} = useSelector((s) => s.Auth);
 
-  
   const [initialRoute, setInitialRoute] = React.useState('Home');
   const [loading, setLoading] = React.useState(true);
   console.log('ini token', isLogin);
@@ -37,6 +36,26 @@ const HomeStack = () => {
             component={Dashboard}
             options={{headerShown: false}}
           />
+          <Stack.Screen
+            name="History"
+            component={History}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Search"
+            component={Search}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="InputAmount"
+            component={InputAmount}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Topup"
+            component={Topup}
+            options={{headerShown: false}}
+          />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
@@ -45,9 +64,7 @@ const HomeStack = () => {
             component={Login}
             options={{headerShown: false}}
           />
-        </Stack.Navigator>
-      )}
-      <Stack.Screen
+          <Stack.Screen
         name="RegisterForm"
         component={RegisterForm}
         options={{headerShown: false}}
@@ -73,26 +90,8 @@ const HomeStack = () => {
         component={ResetPassword}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="History"
-        component={History}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Search"
-        component={Search}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="InputAmount"
-        component={InputAmount}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Topup"
-        component={Topup}
-        options={{headerShown: false}}
-      />
+        </Stack.Navigator>
+      )}
     </>
   );
 };

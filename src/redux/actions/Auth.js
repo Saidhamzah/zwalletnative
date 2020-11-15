@@ -61,6 +61,27 @@ export const AuthLogin = (fields) => {
         })
     }
 }
+export const AuthRegister = (fields) => {
+    return (dispatch) =>{
+        dispatch(AuthRegisterRequest())
+        return Axios({
+            method: 'POST',
+            data: fields,
+            url: 'https://zwallet-sleepless-backend.herokuapp.com/zwallet/api/v1/auth/register'
+        }).then((res)=> {
+            const data = res.data
+            console.log(data, 'dataas')
+            ToastAndroid.show(
+                `Success Register, Welcome`,
+                ToastAndroid.SHORT,
+            );
+            dispatch(AuthRegisterSuccess(data))
+        }).catch((err)=> {
+            const message = err.message
+            dispatch(AuthRegisterError(message))
+        })
+    }
+}
 
 
 export const AuthLogout = ()=> {

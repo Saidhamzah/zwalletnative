@@ -6,7 +6,20 @@ import {ScrollView} from 'react-native-gesture-handler';
 import ProfilePictSamuel from '../../assets/icon/Samuel.svg';
 import ArrowLeft from '../../assets/icon/arrow-left.svg';
 import ProfileNetflix from '../../assets/icon/netflix.svg';
+import {useDispatch, useSelector} from 'react-redux';
+import {getSearch} from '../../redux/actions/Search';
 export default function Search({navigation}) {
+  const dispatch = useDispatch();
+  const Auth = useSelector((s) => s.Auth);
+  const User = useSelector((s) => s.User);
+  const {isLogin} = useSelector((s) => s.Auth);
+  // const {data} = useSelector((s) => s.topup);
+  const userData = User.data.data[0];
+  const authorization = {Authorization: Auth.data.token.token};
+  
+  React.useEffect(() => {
+    dispatch(getSearch(authorization));
+  }, []);
   return (
     <SafeAreaView style={style.container}>
       <ScrollView>

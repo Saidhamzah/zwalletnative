@@ -18,6 +18,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MailIcon from '../../../assets/icon/grey-mail.svg';
 import {useDispatch} from 'react-redux';
 import {AuthLogin} from '../../../redux/actions/Auth'
+import {AuthLogout} from '../../../redux/actions/Auth'
 const Login = (props) => {
   const inputPassword = useRef();
   const [email, setEmail] = useState('');
@@ -42,7 +43,18 @@ const Login = (props) => {
   const toReset = () => {
     props.navigation.navigate('ResetEmail');
   };
-
+  const onLogout = () => {
+    Alert.alert('Log Out Account', 'Are You Sure?', [
+      {
+        text: 'Cancel',
+        style: 'cancel'
+      },
+      {
+        text: 'Logout',
+        onPress: () => dispatch(AuthLogout()),
+      },
+    ], { cancelable: true });
+  };
   return (
     <>
     <StatusBar barStyle="dark-content" backgroundColor="#FAFCFF" />
@@ -50,7 +62,7 @@ const Login = (props) => {
       <ScrollView>
         <View style={styles.positionCenter}>
           <View>
-            <Text style={styles.zwalletIcon}> Zwallet</Text>
+            <Text style={styles.zwalletIcon} onPress={() => onLogout()}> Zwallet</Text>
           </View>
           <View style={styles.formBoxAuth}>
             <View style={styles.positionCenter}>

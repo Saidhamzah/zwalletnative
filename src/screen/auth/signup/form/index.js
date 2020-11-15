@@ -25,7 +25,6 @@ const RegisterForm = (props) => {
 	const toLogin = () => {
 		props.navigation.navigate('Login')
 	}
-
 	return(
 		<Fragment>
 			<ScrollView >
