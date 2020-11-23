@@ -12,6 +12,7 @@ import History from './history'
 import Search from './search'
 import InputAmount from './input amount'
 import Topup from './topup'
+import TransferConfirmation from './transfer confirmation'
 
 
 export {
@@ -25,5 +26,7 @@ export {
 	History,
 	Search,
 	InputAmount,
-	Topup
+	Topup,
+	TransferConfirmation
+	
 }

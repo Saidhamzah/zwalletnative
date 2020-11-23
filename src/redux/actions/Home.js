@@ -1,5 +1,5 @@
 import Axios from 'axios'
-
+import {APIuri} from '../../utils'
 const getHomeRequest = ()=> {
     return{
         type: 'GET_HOME_REQUEST'
@@ -25,7 +25,7 @@ export const getHome = (fields) => {
       dispatch(getHomeRequest());
           return Axios({
             method: "GET",
-            url: `https://zwallet-sleepless-backend.herokuapp.com/zwallet/api/v1/user/home`,
+            url: `${APIuri}/user/home`,
             headers: fields,
           })
           .then((res) => {

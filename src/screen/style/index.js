@@ -45,6 +45,7 @@ export default StyleSheet.create({
     borderRadius: 5,
     marginVertical: 5,
   },
+  
   formInputUsername: {
     width: wp(90),
     height: 50,
@@ -56,6 +57,52 @@ export default StyleSheet.create({
     borderRadius: 5,
     marginVertical: 5,
   },
+  label: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    width: '100%',
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    paddingVertical: 20
+},
+card: {
+backgroundColor: '#FFFFFF',
+borderRadius: 10,
+    padding: 15,
+marginBottom: 20,
+    elevation: 3,
+    flex: 1
+},
+title: {
+    color: '#7A7886',
+    fontSize: 16,
+    marginBottom: 10
+},
+value: {
+    color: '#514F5B',
+    fontSize: 18,
+    fontWeight: 'bold'
+}, 
+buttonPrimary: {
+    alignItems: 'center',
+    backgroundColor: '#6379F4',
+    width: '100%',
+    padding: 16,
+    borderRadius: 12,
+    elevation: 3,
+    marginBottom: 15,
+    marginTop: 40
+},
+buttonGrey: {
+    backgroundColor: '#DADADA',
+    alignItems: 'center',
+    width: '100%',
+    padding: 16,
+    borderRadius: 12,
+    elevation: 3,
+    marginBottom: 15,
+    marginTop: 40
+},
   formTitle: {
     paddingTop: hp('9%'),
     paddingBottom: hp('4%'),
@@ -134,15 +181,12 @@ export default StyleSheet.create({
     marginTop: 20,
   },
   formInputSearch: {
-    width: 350,
-    height: 50,
-    borderColor:"rgba(58, 61, 66, 0.1)",
-    borderWidth: 1,
+    width: '95%',
+    backgroundColor: 'rgba(58, 61, 66, 0.1)',
+    paddingHorizontal: 50,
+    paddingVertical: 15,
     borderRadius: 12,
-    backgroundColor: "rgba(58, 61, 66, 0.1)",
-    marginVertical: 5,
-    marginTop: 20,
-    
+    marginHorizontal: wp(3),
   },
   formInputPasswordFilled: {
     width: 350,
@@ -219,7 +263,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#FAFCFF',
     height: '100%',
-    fontFamily: 'NunitoSans-Regular'
+    fontFamily: 'NunitoSans-Regular',
   },
   navbar: {
     flexDirection: 'row',
@@ -271,22 +315,24 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginTop: 15,
     marginBottom: 10,
-    padding: 15,
+    paddingVertical: 15,
     alignItems: 'center',
     backgroundColor: 'white',
-    borderRadius: 20,
+    borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 1,
     },
+    paddingHorizontal:16,
+    marginHorizontal:16,
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
 
     elevation: 3,
   },
   contentTopup: {
-      fontFamily: 'NunitoSans-Regular',
+    fontFamily: 'NunitoSans-Regular',
     flexDirection: 'row',
     marginTop: 15,
     marginBottom: 10,
@@ -299,20 +345,25 @@ export default StyleSheet.create({
       width: 0,
       height: 1,
     },
-    
+
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
 
     elevation: 3,
   },
-  font50p:{
-    paddingVertical:hp ('1%') 
-},
+  font50p: {
+    paddingVertical: hp('1%'),
+  },
   contentNote: {
     flexDirection: 'row',
     marginTop: 15,
     marginBottom: 10,
     padding: 15,
     alignItems: 'center',
-    },
+  },
+  textLeft:{
+    fontFamily:'NunitoSans-Regular',
+    paddingHorizontal: 16,
+    paddingTop:16
+  }
 });

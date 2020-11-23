@@ -17,5 +17,5 @@
 // 	}
 // 	return false
 // }
-
+export const APIuri ='https://zwallet-sleepless-backend.herokuapp.com/zwallet/api/v1'
 export const imageURI = 'https://zwallet-sleepless-backend.herokuapp.com/images/'

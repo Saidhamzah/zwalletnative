@@ -1,5 +1,5 @@
 import Axios from 'axios'
-
+import {APIuri} from '../../utils'
 export const formFilled = data => {
     return {
         type: FORM_FILLED,
@@ -35,7 +35,7 @@ export const registerFailed = message => {
 }
 
 export const checkEmail = email => async dispatch => {
-    const res = await Axios.post(`${URI}/auth/check`, { email })
+    const res = await Axios.post(`${APIuri}/auth/check`, { email })
     
     dispatch({ type: EMAIL_CHECK, payload: res.data.data.message})
 }
@@ -43,7 +43,7 @@ export const checkEmail = email => async dispatch => {
 export const signup = data => async dispatch => {
     dispatch(registerRequest())
     try {
-        const res = await Axios.post(`${URI}/auth/register`, data)
+        const res = await Axios.post(`${APIuri}/auth/register`, data)
         dispatch(registerSuccess(res.data.message))
     } catch (error) {
         dispatch(registerFailed(error.message))

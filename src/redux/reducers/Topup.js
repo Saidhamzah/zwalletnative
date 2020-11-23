@@ -5,14 +5,14 @@ const initialState = {
   };
   
  export const Topup = (state = initialState, action = {}) => {
-    switch (action.type) {
-      case 'GET_TOPUP_REQUEST':
-        return {
-          ...state,
-          loading: true,
+   switch (action.type) {
+     case 'GET_TOPUP_REQUEST':
+       return {
+         ...state,
+         loading: true,
         };
-      case 'GET_TOPUP_SUCCESS':
-        return {
+        case 'GET_TOPUP_SUCCESS':
+          return {
           ...state,
           loading: false,
           data: action.payload

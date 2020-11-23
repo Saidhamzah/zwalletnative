@@ -1,6 +1,6 @@
 import React from 'react';
 import style from '../style/index';
-import {View, Text, StatusBar,Image} from 'react-native';
+import {View, Text, StatusBar, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button} from 'react-native-paper';
@@ -15,9 +15,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getHome} from '../../redux/actions/Home';
 import {Users} from '../../redux/actions/Users';
 import Topup from '../topup';
-import Search from '../search'
+import Search from '../search';
 import {imageURI} from '../../utils';
 import {getTopup} from '../../redux/actions/Topup';
+
+
 
 const Drawer = createDrawerNavigator();
 
@@ -28,17 +30,40 @@ const Welcome = ({navigation}) => {
   const {data} = useSelector((s) => s.getHome);
   const {isLogin} = useSelector((s) => s.Auth);
   // const {data} = useSelector((s) => s.topup);
-  const userData = User.data.data[0];
-  const authorization = {Authorization: Auth.data.token.token};
-  
+  // const userData = User.data.data[0];
+  const dData = {
+    data: {
+      data: [
+        {
+          id: 2,
+          fullName: 'Momo taro',
+          email: 'momotaro@gmail.com',
+          password:
+          '$2b$10$M.8vGz85vVMb53MLb549.OkOAsPM8G2Ar6pLYH0PiDKifhEN8qh16',
+          pin: '123456',
+          phoneNumber: 6281346839284,
+          balance: 507569,
+          img: 'https://i.ibb.co/vqH8Dbq/img3.png',
+          createdDate: '2020-09-28T22:43:31.000Z',
+        },
+      ],
+    },
+  };
+  const userData = dData.data.data[0];
+  // console.log(userData,'testimoni')
+
   React.useEffect(() => {
-    dispatch(Users(authorization));
+    if (isLogin) {
+      const authorization = {Authorization: Auth.data.token.token};
+      dispatch(Users(authorization));
+    }
   }, [isLogin]);
   React.useEffect(() => {
+    const authorization = {Authorization: Auth.data.token.token};
     dispatch(getHome(authorization));
   }, []);
-  
-  console.log(userData.photo, 'aaaaaaaaaaaaa');
+
+  // console.log(userData.photo, 'aaaaaaaaaaaaa');
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#FAFCFF" />
@@ -46,13 +71,24 @@ const Welcome = ({navigation}) => {
         <ScrollView>
           <View style={style.navbar}>
             <View style={{flex: 2, marginLeft: 15}}>
-              <Image style={{borderRadius: 10, width:52, height:52, marginRight: 20}} source={{uri: userData.img}}/>
+              <Image
+                style={{
+                  borderRadius: 10,
+                  width: 52,
+                  height: 52,
+                  marginRight: 20,
+                }}
+                source={{uri: userData.img}}
+              />
             </View>
             <View style={{flex: 10, flexDirection: 'column'}}>
-              <Text onPress={() => navigation.navigate('login')}>Hello,</Text>
+              <Text 
+              // onPress={() => navigation.navigate('login')}
+              >Hello,</Text>
               <Text
                 style={style.name}
-                onPress={() => navigation.navigate('login')}>
+                // onPress={() => navigation.navigate('login')}
+                >
                 {userData.fullName}
               </Text>
             </View>
@@ -115,15 +151,21 @@ const Welcome = ({navigation}) => {
               </Text>
             </View>
           </View>
-          {data.data.data.map((item, index) => {
+          {data.data ? (data.data.data.map((item, index) => {
             return (
               <View style={style.contentHistory} key={index}>
                 <View style={{flex: 5, flexDirection: 'row'}}>
                   {/* picture */}
                   <View>
-                    
-                      <Image style={{borderRadius: 10, width:52, height:52, marginRight: 20}} source={{uri: item.img}}/>
-                      
+                    <Image
+                      style={{
+                        borderRadius: 10,
+                        width: 52,
+                        height: 52,
+                        marginRight: 20,
+                      }}
+                      source={{uri: item.img}}
+                    />
                   </View>
                   <View
                     style={{
@@ -164,7 +206,9 @@ const Welcome = ({navigation}) => {
                 </View>
               </View>
             );
-          })}
+          })):(
+            <Text>Data Kosong</Text>
+          )}
         </ScrollView>
       </SafeAreaView>
     </>

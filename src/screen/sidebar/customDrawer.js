@@ -27,13 +27,13 @@ function CustomDrawer(props) {
   return (
     <DrawerContentScrollView {...props}>
       <View style={{marginVertical: 50}}>
-        <Avatar.Image
+        {/* <Avatar.Image
           source={{
-            uri: 'https://topmeaning.com/english/images/img/EN/g/guy.jpg',
+            uri: 'https://i.ibb.co/vqH8Dbq/img3.png',
           }}
           size={100}
           style={{alignSelf: 'center'}}
-        />
+        /> */}
       </View>
       <DrawerItemList {...props} />
       <Divider />

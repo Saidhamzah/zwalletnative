@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import { ToastAndroid } from 'react-native'
-
+import {APIuri} from '../../utils'
 const AuthLoginRequest = ()=> {
     return{
         type: 'LOGIN_REQUEST'

@@ -1,44 +1,79 @@
-import Axios from 'axios'
+import Axios from 'axios';
+import {APIuri} from '../../utils'
+const getSearchRequest = () => {
+  return {
+    type: 'GET_SEARCH_REQUEST',
+  };
+};
 
-const getSearchRequest = ()=> {
-    return{
-        type: 'GET_Search_REQUEST'
-    }
-}
+const getSearchSuccess = (data) => {
+  return {
+    type: 'GET_SEARCH_SUCCESS',
+    payload: data,
+  };
+};
+const getSearchError = (error) => {
+  return {
+    type: 'GET_SEARCH_ERROR',
+    payload: error,
+  };
+};
+const getSearchRequestTransfer = () => {
+  return {
+    type: 'GET_SEARCHTRANSFER_REQUEST',
+  };
+};
 
-const getSearchSuccess = (data)=> {
-    return{
-        type: 'GET_Search_SUCCESS',
-        payload: data
-    }
-}
-const getSearchError = (error)=> {
-    return{
-        type: 'GET_HOME_ERROR',
-        payload: error
-    }
-}
+const getSearchSuccessTransfer = (data) => {
+  return {
+    type: 'GET_SEARCHTRANSFER_SUCCESS',
+    payload: data,
+  };
+};
+const getSearchErrorTransfer = (error) => {
+  return {
+    type: 'GET_SEARCHTRANSFER_ERROR',
+    payload: error,
+  };
+};
 
 export const getSearch = (token, paramSearch) => {
-    // console.log(fields.name,"cek cek")
-    return (dispatch) => {
-      dispatch(getSearchRequest());
-          return Axios({
-            method: "GET",
-            url: `https://zwallet-sleepless-backend.herokuapp.com/zwallet/api/v1/user/all`,
-            headers: token,
-            params: paramSearch
-          })
-          .then((res) => {
-            const data = res.data;
-            console.log(data, "cek")
-            dispatch(getSearchSuccess(data));
-          })
-          .catch((err) => {
-            const message = err.message;
-            dispatch(getSearchError(message));
-          });
-
-    
-    };
+  return (dispatch) => {
+    dispatch(getSearchRequest());
+    return Axios({
+      method: 'GET',
+      url: `${APIuri}/user/all`,
+      headers: token,
+      params: {search: paramSearch},
+    })
+      .then((res) => {
+        const data = res.data;
+        console.log(data, 'cek');
+        dispatch(getSearchSuccess(data));
+      })
+      .catch((err) => {
+        const message = err.message;
+        dispatch(getSearchError(message));
+      });
   };
+};
+export const getSearchTransfer = (token, id) => {
+  return (dispatch) => {
+    dispatch(getSearchRequestTransfer());
+    return Axios({
+      method: 'GET',
+      url: `${APIuri}/user/getuser`,
+      headers: token,
+      params: {id: id},
+    })
+      .then((res) => {
+        const data = res.data;
+        console.log(data, 'cek');
+        dispatch(getSearchSuccessTransfer(data));
+      })
+      .catch((err) => {
+        const message = err.message;
+        dispatch(getSearchErrorTransfer(message));
+      });
+  };
+};

@@ -1,5 +1,5 @@
 import Axios from 'axios'
-
+import {APIuri} from '../../utils'
 const TopupRequest = ()=> {
     return{
         type: 'GET_TOPUP_REQUEST'
@@ -25,7 +25,7 @@ export const getTopup = () => {
       dispatch(TopupRequest());
           return Axios({
             method: "GET",
-            url: `https://zwallet-sleepless-backend.herokuapp.com/zwallet/api/v1/topup/`,
+            url: `${APIuri}/topup/`,
           })
           .then((res) => {
             const data = res.data;
