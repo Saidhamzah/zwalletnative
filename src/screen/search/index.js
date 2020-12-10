@@ -15,14 +15,13 @@ export default function Search({navigation}) {
   const User = useSelector((s) => s.User);
   const {isLogin} = useSelector((s) => s.Auth);
   const {data} = useSelector((s) => s.getSearch);
-  const userData = User.data.data[0];
   const authorization = {Authorization: Auth.data.token.token};
 
   React.useEffect(() => {
     dispatch(getSearch(authorization));
   }, []);
 
-  console.log(userData.id, 'ini data');
+  console.log(User.data.id, 'ini data');
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#FAFCFF" />
@@ -71,14 +70,15 @@ export default function Search({navigation}) {
                   color: 'grey',
                   textAlign: 'left',
                 }}>
-                {data.data.length} contacts found
+                  {data.data? (data.data.length+' contacts found'):('no contact found')}
               </Text>
             </View>
           </View>
-          {data.data.map((item, index) => {
+          {data.data?
+          data.data.map((item, index) => {
             return (
               <>
-              {userData.id==item.id ? (
+              {User.data.id==item.id ? (
                 <>
                 </>
               ):(
@@ -119,7 +119,10 @@ export default function Search({navigation}) {
               )}
               </>
             );
-          })}
+          })
+          : 
+          <Text></Text>
+          }
         </ScrollView>
       </SafeAreaView>
     </>

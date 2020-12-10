@@ -16,9 +16,7 @@ export default function InputAmount({navigation}) {
   const dispatch = useDispatch();
   const Auth = useSelector((s) => s.Auth);
   const User = useSelector((s) => s.User);
-  const userData = User.data.data[0];
   const {data} = useSelector((s) => s.getSearchTransfer);
-  const authorization = {Authorization: Auth.data.token.token};
   const receiverData = data.data[0];
 
   const noteInput = useRef();
@@ -29,13 +27,13 @@ export default function InputAmount({navigation}) {
   // console.log(data.data[0], 'ini data baru');
 
   const onSubmit=()=>{
-    if(amount && parseInt(amount)<= userData.balance){
+    if(amount && parseInt(amount)<= User.data.balance){
       dispatch(transferDataFilled({
-        amount: parseInt(amount),
+        amountTransfer: parseInt(amount),
         note : note,
         receiver : receiverData.id,
         status : 'Transfer',
-        balanceLeft : (userData.balance - parseInt(amount))
+        balanceLeft : (User.data.balance - parseInt(amount))
       }))
       navigation.navigate("TransferConfirmation")
     }else{
@@ -103,7 +101,7 @@ export default function InputAmount({navigation}) {
                 fontWeight: 'bold',
                 marginBottom: 40,
               }}>
-              Rp{userData.balance} Available
+              Rp{User.data.balance} Available
             </Text>
             <View
               style={{

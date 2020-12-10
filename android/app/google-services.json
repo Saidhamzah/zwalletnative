@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1088172516355",
+    "project_id": "zwallet-noob",
+    "storage_bucket": "zwallet-noob.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1088172516355:android:09d6776024ad8671235a36",
+        "android_client_info": {
+          "package_name": "com.zwalletnative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1088172516355-nquol62f23fqidmnq5jkf6eblnsa7j96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBauMFuEsXoJR9o1rshEju3AB2xwt0JKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1088172516355-nquol62f23fqidmnq5jkf6eblnsa7j96.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

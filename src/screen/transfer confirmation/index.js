@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {
   Text,
   View,
@@ -7,7 +7,7 @@ import {
   StatusBar,
   SafeAreaView,
   Image,
-  StyleSheet,
+  StyleSheet,ToastAndroid
 } from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import {useSelector} from 'react-redux';
@@ -15,14 +15,20 @@ import moment from 'moment';
 import styles from '../style';
 
 export default function TransferConfirmation({navigation}) {
-  const {data} = useSelector((s) => s.Transfer);
+  const {data,isSuccess} = useSelector((s) => s.Transfer);
   const Auth = useSelector((s) => s.Auth);
   const User = useSelector((s) => s.User);
   const {isLogin} = useSelector((s) => s.Auth);
   const userTransfer = useSelector((s) => s.getSearchTransfer);
   const userReceiver = userTransfer.data.data[0];
-  const userData = User.data.data[0];
-  console.log(userReceiver, ' ini data');
+  // console.log(userReceiver, ' ini data');
+  
+  useEffect(()=>{
+    if(isSuccess){
+      ToastAndroid.show(` Transfer ${isSuccess? 'Success':'Failed'}`, ToastAndroid.SHORT)
+      navigation.replace("Status")
+    }
+  },[isSuccess])
 
   const splitFormat = (number) => {
     let newNumber = number.toString().split('').reverse().join('');
@@ -35,7 +41,7 @@ export default function TransferConfirmation({navigation}) {
     }
     return finalNumber.split("").reverse().join("")
   };
-  console.log(data.amount.toString().length, 'ini apa');
+  // console.log(data.amount.toString().length, 'ini apa');
   return (
     <>
       <StatusBar backgroundColor={styles.primary} />
@@ -107,7 +113,7 @@ export default function TransferConfirmation({navigation}) {
                       color: '#3A3D42',
                       fontWeight: 'bold',
                     }}>
-                    Rp {splitFormat(data.amount)}
+                    Rp {splitFormat(data.amountTransfer)}
                   </Text>
                 </View>
               </View>
@@ -214,16 +220,3 @@ export default function TransferConfirmation({navigation}) {
     </>
   );
 }
-
-const customStyle = StyleSheet.create({
-  top: {
-    backgroundColor: 'white',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    paddingTop: StatusBar.currentHeight * 0.2,
-    paddingBottom: StatusBar.currentHeight,
-    paddingHorizontal: 16,
-    marginBottom: 30,
-    alignItems: 'center',
-  },
-});

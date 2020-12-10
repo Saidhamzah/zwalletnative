@@ -3,7 +3,6 @@ import style from '../style/index';
 import {View, Text, TextInput, StatusBar} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
-import ArrowLeft from '../../assets/icon/arrow-left.svg';
 import PlusBlue from '../../assets/icon/plusBlue.svg';
 import {useDispatch, useSelector} from 'react-redux';
 import {getTopup} from '../../redux/actions/Topup';
@@ -15,8 +14,11 @@ export default function Topup({navigation}) {
   const User = useSelector((s) => s.User);
   const {data} = useSelector((s) => s.Topup);
   React.useEffect(() => {
-    dispatch(getTopup());
+    if(isLogin){
+      dispatch(getTopup());
+    }
   }, [isLogin]);
+  console.log(data,'ini top up')
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#FAFCFF" />
@@ -66,7 +68,7 @@ export default function Topup({navigation}) {
               How to Top-Up
             </Text>
           </View>
-          {data.data.map((item, index) => {
+          {data.data ? data.data.map((item, index) => {
             return (
               <View style={style.contentTopup} key={index}>
                 <View style={{flex: 5, flexDirection: 'row'}}>
@@ -92,7 +94,9 @@ export default function Topup({navigation}) {
                 </View>
               </View>
             );
-          })}
+          }):(
+            <View></View>
+          )}
         </ScrollView>
       </SafeAreaView>
     </>

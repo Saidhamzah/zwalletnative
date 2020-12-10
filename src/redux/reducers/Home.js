@@ -2,6 +2,7 @@
 const initialState = {
     data: [],
     loading: false,
+    message: ''
   };
   
  export const getHome = (state = initialState, action = {}) => {
@@ -15,15 +16,18 @@ const initialState = {
         return {
           ...state,
           loading: false,
-          data: action.payload
+          data: action.payload,
+          message:''
         };
       case 'GET_HOME_ERROR':
         return {
           ...state,
           loading: false,
-          isLogin: false,
-          data:[],
-          error: action.payload
+          message: 'empty'
+        };
+      case 'GET_HOME_DEFAULT':
+        return {
+          ...state
         };
       default:
         return state

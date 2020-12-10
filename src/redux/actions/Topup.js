@@ -29,14 +29,12 @@ export const getTopup = () => {
           })
           .then((res) => {
             const data = res.data;
-            console.log(data, "cek")
+            console.log(data, "cek topup")
             dispatch(TopupSuccess(data));
           })
           .catch((err) => {
             const message = err.message;
             dispatch(TopupError(message));
           });
-
-    
     };
   };

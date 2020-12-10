@@ -41,7 +41,6 @@ const getUsersError = (error)=> {
 }
 
 export const Users = (fields) => {
-    console.log(fields,"ceek")
     return (dispatch) => {
       dispatch(UsersRequest());
       return Axios({
@@ -51,8 +50,8 @@ export const Users = (fields) => {
       })
         .then((res) => {
           const data = res.data;
-          console.log(data.data,"aaaaaaaaaa")
-          dispatch(UsersSuccess(data));
+          // console.log(data.data,'auth userrrrrrrrrrrrr')
+          dispatch(UsersSuccess(data.data[0]));
         })
         .catch((err) => {
           const message = err.message;

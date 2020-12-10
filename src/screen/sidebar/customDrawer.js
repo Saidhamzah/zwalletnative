@@ -7,6 +7,7 @@ import {
 import {Alert, Text, View} from 'react-native';
 import {Avatar, Divider, List} from 'react-native-paper';
 import {AuthLogout} from '../../redux/actions/Auth';
+import {getHomeDefault} from '../../redux/actions/Home'
 import {useDispatch} from 'react-redux';
 
 function CustomDrawer(props) {
@@ -20,7 +21,7 @@ function CustomDrawer(props) {
       },
       {
         text: 'Logout',
-        onPress: () => dispatch(AuthLogout()),
+        onPress: () => dispatch(AuthLogout(),getHomeDefault()),
       },
     ], { cancelable: true });
   };

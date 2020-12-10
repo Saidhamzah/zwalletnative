@@ -17,5 +17,7 @@
 // 	}
 // 	return false
 // }
-export const APIuri ='https://zwallet-sleepless-backend.herokuapp.com/zwallet/api/v1'
-export const imageURI = 'https://zwallet-sleepless-backend.herokuapp.com/images/'
+// export const APIuri ='192.168.100.169:7000/zwallet/api/v1'
+// export const APIuri ='https://zwallet-ewallet.herokuapp.com/zwallet/api/v1'
+export const APIuri ='http://192.168.1.3:7000/zwallet/api/v1'
+export const imageURI = 'http://192.168.1.3:7000'

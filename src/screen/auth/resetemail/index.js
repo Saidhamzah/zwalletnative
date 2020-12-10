@@ -9,15 +9,18 @@ import {
 import {Button, Text} from 'react-native-paper'	
 import styles from '../../style/index'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-
+import {useDispatch, useSelector} from 'react-redux';
+import {emailFilled} from '../../../redux/actions/ResetPass'
 
 const ResetEmail = (props) => {
+	const dispatch = useDispatch();
 	const inputPassword = useRef()
 	const [email, setEmail]	= useState('');
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
 
 	const toResetPassword = () => {
+		dispatch(emailFilled(email))
 		props.navigation.navigate('ResetPassword')
 	}
 

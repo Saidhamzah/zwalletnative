@@ -16,7 +16,7 @@ import {Button, Text} from 'react-native-paper';
 import styles from '../../style/index';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MailIcon from '../../../assets/icon/grey-mail.svg';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AuthLogin} from '../../../redux/actions/Auth'
 import {AuthLogout} from '../../../redux/actions/Auth'
 const Login = (props) => {
@@ -25,14 +25,17 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const {data} = useSelector((s)=> s.getDevice)
 
   const onSubmit = () => {
     Keyboard.dismiss();
     setLoading(true);
+    console.log(email, password)
     dispatch(
       AuthLogin({
         email: email,
         password: password,
+        device_token: data
       }),
     );
   };
