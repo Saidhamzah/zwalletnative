@@ -25,10 +25,14 @@ export default function Status({navigation}) {
   const userTransfer = useSelector((s) => s.getSearchTransfer);
   const userReceiver = userTransfer.data.data[0];
 
-  console.log(userReceiver,'receiver')
-  console.log(userTransfer,'Transfer')
-  console.log(isSuccess,'dataTransfer')
-
+  useEffect(() => {
+    if (isSuccess) {
+      console.log(userReceiver,'receiver')
+      console.log(userTransfer,'Transfer')
+      console.log(isSuccess,'dataTransfer sukses')
+        
+    }
+}, [isSuccess]);
   const splitFormat = (number) => {
     let newNumber = number.toString().split('').reverse().join('');
     let finalNumber = '';
@@ -56,7 +60,7 @@ export default function Status({navigation}) {
               }}>
               <View style={{alignItems: 'center'}}>
                 <View style={{marginBottom: 30}}>
-                  {isSuccess ? (
+                  {!isSuccess ? (
                     <Success width={70} height={70} />
                   ) : (
                     <Failed width={70} height={70} />
@@ -71,7 +75,7 @@ export default function Status({navigation}) {
                   }}>
                   Transfer {isSuccess ? 'Success' : 'Failed'}
                 </Text>
-                {!isSuccess ? (
+                {isSuccess ? (
                   <Text
                     style={{
                       color: '#7A7886',
@@ -241,7 +245,7 @@ export default function Status({navigation}) {
                   </View>
                 </View>
               </View>
-              {isSuccess ? (
+              {!isSuccess ? (
                 <RectButton
                   onPress={() => navigation.replace('Dashboard')}
                   style={styles.buttonPrimary}>

@@ -25,7 +25,7 @@ export default function Search({navigation}) {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#FAFCFF" />
-      <SafeAreaView style={style.container}>
+      <SafeAreaView>
         <ScrollView>
           <View style={{width: '100%', position: 'relative'}}>
             <View style={{position: 'absolute', zIndex: 3, top: 15, left: 20}}>

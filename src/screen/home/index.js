@@ -87,8 +87,10 @@ const Welcome = ({navigation}) => {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#FAFCFF" />
-      <SafeAreaView style={style.container}>
-        <ScrollView>
+      <SafeAreaView>
+          <View>
+        <ScrollView >
+            
           <View style={style.navbar}>
             <View style={{flex: 2, marginLeft: 15}}>
               <Image
@@ -129,7 +131,7 @@ const Welcome = ({navigation}) => {
               {User.data.balance}
             </Text>
             <Text style={{color: 'white', fontSize: 14}}>
-              +{User.data.phoneNumber}
+              {User.data.phoneNumber==62||User.data.phoneNumber==0? `You aren't register your phone number yet`: '+'+User.data.phoneNumber }
             </Text>
           </View>
           <View style={{flexDirection: 'row', marginTop: 10}}>
@@ -270,7 +272,9 @@ const Welcome = ({navigation}) => {
           {/* <TouchableOpacity onPress={editLimit}>
             <Text>Load More</Text>
           </TouchableOpacity> */}
+        
         </ScrollView>
+        </View>
       </SafeAreaView>
     </>
   );

@@ -22,7 +22,7 @@ export default function Topup({navigation}) {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#FAFCFF" />
-      <SafeAreaView style={style.container}>
+      <SafeAreaView >
         <ScrollView>
           <View style={style.contentHistory}>
             <View style={{flex: 5, flexDirection: 'row'}}>

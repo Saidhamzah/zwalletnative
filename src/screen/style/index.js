@@ -149,6 +149,7 @@ buttonGrey: {
     borderWidth: 1,
     borderRadius: 5,
     marginVertical: 5,
+    paddingLeft:40
   },
   formSection: {
     flex: 1,
@@ -167,6 +168,7 @@ buttonGrey: {
     borderWidth: 1,
     borderRadius: 5,
     marginVertical: 5,
+    paddingLeft:40
   },
   formInputPassword: {
     width: 350,
@@ -178,7 +180,7 @@ buttonGrey: {
     borderWidth: 1,
     borderRadius: 5,
     marginVertical: 5,
-    marginTop: 20,
+    paddingLeft:40
   },
   formInputSearch: {
     width: '95%',
@@ -199,7 +201,7 @@ buttonGrey: {
     borderWidth: 1,
     borderRadius: 5,
     marginVertical: 5,
-    marginTop: 20,
+    paddingLeft:40
   },
   forgotPassword: {
     color: 'rgba(58, 61, 66, 0.8)',
@@ -404,7 +406,8 @@ buttonGrey: {
 	likeRow : {
 	    flex: 1,
       flexDirection: 'row',
-      paddingVertical: 10	
+      paddingVertical: 10	,
+      marginHorizontal: 10
 	},
 	likeRowTwo : {
 	    flex: 1,

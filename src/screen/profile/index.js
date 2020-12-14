@@ -10,8 +10,6 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {useDispatch, useSelector} from 'react-redux';
 import {getHome} from '../../redux/actions/Home';
 import {Users} from '../../redux/actions/Users';
-import Topup from '../topup';
-import Search from '../search';
 import {imageURI} from '../../utils';
 import Edit from '../../assets/icon/edit-profile.svg'
 import Arrow from '../../assets/icon/arrow-right.svg'
@@ -27,7 +25,6 @@ export default function Profile({navigation}){
     const userData = User.data;
     const [name, setName] = useState(userData.fullName)
     const [inputActive, setInputActive] = useState(false)
-    const authorization = {Authorization: Auth.data.token.token};
     const {success} = useSelector((s)=> s.ProfileNumber)
     const photoCamera = () => {
         ImagePicker.launchCamera({
@@ -48,11 +45,11 @@ export default function Profile({navigation}){
     }
     useEffect(() => {
         if (success) {
-          const authorization = {Authorization: Auth.data.token.token};
-          // console.log(authorization,'users nih')
-          dispatch(Users(authorization));
+            const authorization = {Authorization: Auth.data.token.token};
+            // console.log(authorization,'users nih')
+            dispatch(Users(authorization));
         }
-      }, []);
+    }, [success]);
     const photoLibrary = () => {
         ImagePicker.launchImageLibrary({
             mediaType: 'photo',
@@ -64,6 +61,7 @@ export default function Profile({navigation}){
                 name: response.fileName,
                 type: response.type
             })
+            const authorization = {Authorization: Auth.data.token.token};
             dispatch(editProfile(authorization,formData))
         })
     }
@@ -133,7 +131,7 @@ export default function Profile({navigation}){
                                         <Text style={{fontWeight: 'bold', color: '#4D4B57', fontSize: 24, marginBottom: 10}}>{userData.fullName}</Text>
                                     </TouchableOpacity>
                                 )}
-                                <Text style={{color:'#7A7886', fontSize: 16}}>+{userData.phoneNumber}</Text>
+                                <Text style={{color:'#7A7886', fontSize: 16}}>{userData.phoneNumber==62||userData.phoneNumber==0? `No phone number registered`: '+'+userData.phoneNumber}</Text>
                             </View>
                             <View>
                                 <RectButton 
